@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Bobo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fefefe;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .question-container,
+    .form-container {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .active {
+      display: flex;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #6200ea;
+      color: white;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #3700b3;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .message {
+      color: red;
+      font-weight: bold;
+    }
+
+    .greeting {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Formulário inicial -->
+  <div class="form-container active" id="nameForm">
+    <h2>Digite seu nome para começar</h2>
+    <input type="text" id="userName" placeholder="Seu nome" required>
+    <button onclick="startQuiz()">Começar</button>
+  </div>
+
+  <!-- Quiz -->
+  <div id="quiz">
+    <!-- Pergunta 1 -->
+    <div class="question-container" data-correct="B" data-error="Acho que você errou, lê certo amor ❤">
+        <p class="greeting"></p>
+        <h2>Você está pronta para começar?</h2>
+        <button style="background-color: green;" data-answer="A">Não</button>
+        <button style="background-color: red;" data-answer="B">Sim</button>
+        <p class="message"></p>
+      </div>
+
+    <!-- Pergunta 2 -->
+    <div class="question-container" data-correct="B" data-error="Eu sei que você tá pronta, mas era no botão de baixo, amor">
+        <p class="greeting"></p>
+        <h2>Tem certeza disso?</h2>
+        <button style="background-color: green;" data-answer="A">Sim</button>
+        <button style="background-color: green;" data-answer="B">Sim</button>
+        <p class="message"></p>
+    </div>
+
+    <div class="question-container" data-correct="E" data-error="É bom você tentar novamente, vai dar certo!">
+        <p class="greeting"></p>
+        <h2>Ahh, agora sim vc acertou! Então me responde, 7+7:</h2>
+        <button data-answer="A">15</button>
+        <button data-answer="B">Quinze</button>
+        <button data-answer="C">10+5</button>
+        <button data-answer="D">3x5</button>
+        <button data-answer="E">14</button>
+        <p class="message"></p>
+    </div>
+
+    <div class="question-container" data-correct="C" data-error="Na verdade eu também não sei, queria encher o saco só, pode pular">
+        <p class="greeting"></p>
+        <h2>E se o curupira fazer moonwalk, ele tá indo pra frente ou pra trás?</h2>
+        <button data-answer="A">Frente</button>
+        <button data-answer="B">Trás</button>
+        <button data-answer="C">Pular</button>
+        <p class="message"></p>
+    </div>
+
+    <div class="question-container" data-correct="C" data-error="Na verdade eu também não sei, queria encher o saco só, pode pular">
+        <p class="greeting"></p>
+        <h2>Aqui eu tava em ligação com você, esqueci o que ia colocar</h2>
+        <button data-answer="C">Boa, imbecil</button>
+        <p class="message"></p>
+    </div>
+
+    <div class="question-container" data-correct="B" data-error="Muito fácil para ter errado">
+        <p class="greeting"></p>
+        <h2>Vamos testar um pouco do seu conhecimento agora. <br>O que significa "Aishitemasu"? (Não pode colar!)</h2>
+        <button data-answer="A">Vem cá meu bem</button>
+        <button data-answer="B">Preciso de abraços e beijinhos</button>
+        <button data-answer="C">Eu te amo</button>
+        <p class="message"></p>
+    </div>
+
+    <div class="question-container" data-correct="C" data-error="Essa tava mais fácil ainda, como errou?">
+        <p class="greeting"></p>
+        <h2>Sabia que vc era capaz. Agora, e "Je t'aime"?</h2>
+        <button data-answer="A">Sinto sua falta</button>
+        <button data-answer="B">Pegar/chupar o peito</button>
+        <button data-answer="C">Vem cá meu bem</button>
+        <p class="message"></p>
+    </div>
+
+    <div class="question-container" data-correct="B" data-error="Essa você quem criou, como pode?">
+        <p class="greeting"></p>
+        <h2>Parabéns, tá fluente na nossa língua especial já. Última, qual dessas palavras representa a expressão "Sinto sua falta"?</h2>
+        <button data-answer="A">Milujite</button>
+        <button data-answer="B">Iloveu</button>
+        <button data-answer="C">Lumbita</button>
+        <p class="message"></p>
+    </div>
+
+    <div class="question-container" data-correct="B" data-error="Pare de ser convencida">
+        <p class="greeting"></p>
+        <h2>Que bonitinha, acertou todas! Você é muito boa amor!</h2>
+        <button style="background-color: green;" data-answer="A">Eu sei, sou incrível</button>
+        <button style="background-color: red;" data-answer="B">Obrigada, meu amorzinho</button>
+        <p class="message"></p>
+      </div>
+
+      <div class="question-container" data-correct="B" data-error="Ah você quer sim!">
+        <p class="greeting"></p>
+        <h2>Isso mesmo, agora sim! <br> Quer continuar? (Perca de tempo) (Clique no verde)</h2>
+        <button style="background-color: red;" data-answer="B">Quero sim</button>
+        <button style="background-color: green;" data-answer="A">Não, não quero</button>
+        <p class="message"></p>
+      </div>
+
+      <div class="question-container" data-correct="B" data-error="Era no outro botão amarelo na verdade, kkkk">
+        <p class="greeting"></p>
+        <h2>Clique no botão amarelo</h2>
+        <button style="background-color: rgb(206, 121, 146);" data-answer="B">Botão amarelo</button>
+        <button style="background-color: yellow;" data-answer="A">ㅤㅤㅤㅤ</button>
+        <p class="message"></p>
+      </div>
+
+
+    <div class="question-container" data-correct="A" data-error="Você tem sim, pare de mentir!">
+      <p class="greeting"></p>
+      <h2>Você tem alma?</h2>
+      <button data-answer="A">Sim</button>
+      <button data-answer="B">Não</button>
+      <p class="message"></p>
+    </div>
+
+    <div class="question-container" data-correct="A" data-error="Conseguiu sim, tá querendo enganar quem?">
+        <p class="greeting"></p>
+        <h2>Você conseguiu chegar até aqui?</h2>
+        <button data-answer="A">Sim</button>
+        <button data-answer="B">Não</button>
+        <p class="message"></p>
+      </div>
+  </div>
+
+  <div class="question-container" data-correct="B" data-error="Até sabia, mas eu queria falar novamente, e ainda não é o suficiente">
+    <p class="greeting"></p>
+    <h2>Sabia que eu te amo?</h2>
+    <button data-answer="A">Sabia!</button>
+    <button data-answer="B">Eu também te amo amor!</button>
+    <p class="message"></p>
+  </div>
+
+  <div class="question-container" data-correct="D" data-error="Eu avisei!">
+    <p class="greeting"></p>
+    <h2>Você chegou ao fim, tente escolher a resposta certa. (Spoiler: não tem!)</h2>
+    <button data-answer="A">Resposta</button>
+    <button data-answer="B">Certa reposta</button>
+    <button data-answer="C">Resposta certa</button>
+    <button data-answer="D">Finalizar</button>
+    <p class="message"></p>
+  </div>
+
+  <div class="question-container" data-correct="E" data-error="Tem que achar o certo!">
+    <p class="greeting"></p>
+    <h2>QUE?</h2>
+    <img src="https://viverbem.unimed.coop.br/wp-content/uploads/2024/11/0d7b7dcd-a562-4618-9c2c-0b3f116ca090.jpeg" alt="">
+    <button data-answer="D">jo</button>
+    <button data-answer="A">jo</button>
+    <button data-answer="B">jo</button>
+    <button data-answer="D">jo</button>
+    <button data-answer="A">jo</button>
+    <button data-answer="C">jo</button>
+    <button data-answer="E">jo</button>
+    <button data-answer="D">jo</button>
+    <p class="message"></p>
+  </div>
+
+  <div class="question-container" data-correct="D" data-error="Eu avisei!">
+    <p class="greeting"></p>
+    <h2>Agora é o fim mesmo, obrigado por ficar até aqui, beijão minha linda, eu te amo!</h2>
+    <img src="https://media.tenor.com/vebPkPJbmGMAAAAM/rocky7.gif" alt="">
+    <p class="message"></p>
+  </div>
+
+  <script>
+    let userName = '';
+
+    function startQuiz() {
+      const input = document.getElementById('userName');
+      userName = input.value.trim();
+
+      if (userName === '') {
+        alert('Por favor, digite seu nome.');
+        return;
+      }
+
+      document.getElementById('nameForm').classList.remove('active');
+      showQuestion(0);
+    }
+
+    const questions = document.querySelectorAll('.question-container');
+
+    function showQuestion(index) {
+      questions[index].classList.add('active');
+      const greeting = questions[index].querySelector('.greeting');
+      greeting.textContent = `Olá, ${userName}!`;
+    }
+
+    function showMessage(container, text) {
+      const message = container.querySelector('.message');
+      message.textContent = text;
+    }
+
+    function clearMessage(container) {
+      const message = container.querySelector('.message');
+      message.textContent = '';
+    }
+
+    questions.forEach((container, index) => {
+      const correctAnswer = container.getAttribute('data-correct');
+      const errorMessage = container.getAttribute('data-error');
+      const buttons = container.querySelectorAll('button');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const answer = btn.getAttribute('data-answer');
+
+          if (correctAnswer === 'none') {
+            showMessage(container, errorMessage);
+            return;
+          }
+
+          if (answer === correctAnswer) {
+            clearMessage(container);
+            container.classList.remove('active');
+            if (index + 1 < questions.length) {
+              showQuestion(index + 1);
+            }
+          } else {
+            showMessage(container, errorMessage);
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
